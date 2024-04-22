@@ -101,7 +101,7 @@ export default {
                     default:
                         // return new Response('Not found', { status: 404 });
                         // For any other path, reverse proxy to 'www.baidu.com' and return the original response
-                        url.hostname = 'www.qq.com';
+                        url.hostname = 'www.aliyun.com';
                         url.protocol = 'https:';
                         request = new Request(url, request);
                         return await fetch(request);
@@ -749,21 +749,10 @@ function getVLESSConfig(userID, hostName) {
     const vlessLink = `vless://${userID}\u0040${hostName}:80?encryption=none&security=none&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#${hostName}`
     const vlessTlsLink = `vless://${userID}\u0040${hostName}:443?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2560#${hostName}-TLS`
     return `
-下面是非 TLS 端口的节点信息及分享链接，可使用 CF 支持的非 TLS 端口：
-
-地址：${hostName} 或 CF 优选 IP
-端口：80 或 CF 支持的非 TLS 端口
-UUID：${userID}
-传输：ws
-伪装域名：${hostName}
-路径：/?ed=2560
-
-${vlessLink}
-
-下面是 TLS 端口的节点信息及分享链接，可使用 CF 支持的 TLS 端口：
-
-地址：${hostName} 或 CF 优选 IP
-端口：443 或 CF 支持的 TLS 端口
+---------------------------------------------------------------
+节点信息：
+地址：${hostName}
+端口：443
 UUID：${userID}
 传输：ws
 传输层安全：TLS
@@ -773,9 +762,6 @@ SNI 域名：${hostName}
 
 ${vlessTlsLink}
 
----------------------------------------------------------------
-提示：部分地区有 CF 默认域名被污染的情况，除非打开客户端的 TLS 分片功能，否则无法使用 TLS 端口的节点
-如为 Pages 部署的节点则只能使用 TLS 端口的节点
 ---------------------------------------------------------------
 `;
 }
